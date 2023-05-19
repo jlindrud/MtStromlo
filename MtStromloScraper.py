@@ -12,9 +12,14 @@ from urllib3.exceptions import InsecureRequestWarning
 parser = argparse.ArgumentParser(description='Retrieve web cam pictures from Mt Stromlo.')
 parser.add_argument('-d', '--dir', type=str, dest='localFolder', required=True, help='Local folder to save files to.')
 parser.add_argument('-u', '--url', type=str, dest='url', help='Url of webcam page', default='https://ozforecast.com.au/cgi-bin/weatherstation.cgi?station=11550&animate=10')
+parser.add_argument('-p', '--publish', type=str, dest='publishUrl', required=True, help='URL on which the page is being published. E.g. "https://jlindrud.github.io/MtStromlo/"')
 args = parser.parse_args()
 localFolder = args.localFolder
 url = args.url
+publishUrl = args.publishUrl
+if not publishUrl.endswith('/'):
+    publishUrl += '/'
+publishUrl = publishUrl.replace('\\', '/')
 
 scriptDir = os.path.split( os.path.realpath(__file__) )[0]
 templateFile = os.path.join(scriptDir, 'PageTemplate.html')
@@ -24,6 +29,13 @@ indexFile = os.path.join(localFolder, 'index.html')
 
 print('Script dir: {}'.format(scriptDir))
 print('Template file: {}'.format(templateFile))
+print('Scrape webcam on URL: {}'.format(url))
+print('Generate website to folder: {}'.format(localFolder))
+print('Publish website on URL: {}'.format(publishUrl))
+
+# Try to create the local folder if it doesn't exist.
+if not os.path.exists(localFolder):
+    os.makedirs(localFolder)
 
 def doDownload(url, localFolder):
 
@@ -103,7 +115,7 @@ def generatePage(pageFile, imgDate, imgHour, imgFiles, prevFileName, nextFileNam
                         timeStamp =  (os.path.splitext(fileName)[0]).split('-')[-1]
                         timeStamp = timeStamp[0:2] + ':' + timeStamp[2:4] + ':' + timeStamp[4:6]
                         fileTime = imgDate[:4] + '-' + imgDate[4:6] + '-' + imgDate[6:8] + ' ' + timeStamp
-                        fout.write('  {{"name":"img{}", "src":"https://www.deltavsoft.com/MtStromlo/{}", "time":"{}"}},\n'.format(idx, fileName, fileTime))
+                        fout.write('  {{"name":"img{}", "src":"{}", "time":"{}"}},\n'.format(idx, publishUrl+fileName, fileTime))
                         idx += 1
                 elif 'GENERATED_PREV_BUTTON' in line:
                     fout.write('''<button onclick="window.location='{}';">&lt;&lt; Previous</button>'''.format(prevFileName))
