@@ -14,3 +14,4 @@ Brought to you courtesy of DummyIndex.py!
 with open('index.html', 'w') as fout:
     fout.write(html)
 
+
