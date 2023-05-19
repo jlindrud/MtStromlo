@@ -1,5 +1,6 @@
 
 import sys
+from bs4 import BeautifulSoup
 
 # Write out a dummy HTML file.
 
