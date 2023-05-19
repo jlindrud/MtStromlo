@@ -1,5 +1,9 @@
 
+import sys
+
 # Write out a dummy HTML file.
+
+print('Runnning Python from: {}'.format(sys.executable))
 
 html = '''\
 <html>
@@ -11,8 +15,8 @@ Brought to you courtesy of DummyIndex.py!
 </html>
 '''
 
-with open('index.html', 'w') as fout:
+outFile = 'index.html'
+print('Generating file: {}'.format(outFile))
+
+with open(outFile, 'w') as fout:
     fout.write(html)
-
-
-
