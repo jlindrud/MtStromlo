@@ -24,7 +24,8 @@ Current date and time is: {}
 '''
 
 outDir = 'public'
-os.makedirs(outDir)
+if not os.path.exists(outDir):
+    os.makedirs(outDir)
 
 outFile = os.path.join(outDir, 'index.html')
 print('Generating file: {}'.format(outFile))
