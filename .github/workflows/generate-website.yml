@@ -24,12 +24,11 @@ jobs:
       
       - name: Commit website
         run: |
-        cd public
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add --all
-        git commit -m "Regen /public"
-        git push
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add --all public/
+          git commit -m "Regen /public"
+          git push
       
       - name: Push website
         uses: ad-m/github-push-action@master
