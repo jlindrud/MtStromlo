@@ -1,5 +1,7 @@
 
+import os
 import sys
+import datetime
 from bs4 import BeautifulSoup
 
 # Write out a dummy HTML file.
@@ -11,13 +13,23 @@ html = '''\
 <head>
 </head>
 <body>
+<p>
 Brought to you courtesy of DummyIndex.py!
+</p>
+<p>
+Current date and time is: {}
+</p>
 </body>
 </html>
 '''
 
-outFile = 'index.html'
+outDir = 'public'
+os.makedirs(outDir)
+
+outFile = os.path.join(outDir, 'index.html')
 print('Generating file: {}'.format(outFile))
 
+dtNow = datetime.datetime.now()
 with open(outFile, 'w') as fout:
-    fout.write(html)
+    fout.write(html.format(dtNow))
+    
