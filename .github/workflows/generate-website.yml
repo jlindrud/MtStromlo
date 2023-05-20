@@ -2,6 +2,7 @@ name: Re-generate Website
 run-name: Re-generating website with GitHub Action
 on: 
   workflow_dispatch:
+    branches: [ master ]
   schedule:
     - cron: "*/10 * * * *"
 jobs:
