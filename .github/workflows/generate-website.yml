@@ -3,7 +3,7 @@ run-name: Re-generating website with GitHub Action
 on: 
   workflow_dispatch:
   schedule:
-    - cron: */15 * * * *
+    - cron: "*/10 * * * *"
 jobs:
   Generate-Website:
     runs-on: ubuntu-latest
