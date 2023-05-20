@@ -1,8 +1,9 @@
 name: Re-generate Website
 run-name: Re-generating website with GitHub Action
 on: 
-  schedule:
-    - cron: "*/10 * * * *"
+  workflow_dispatch:
+  #schedule:
+  #  - cron: "*/10 * * * *"
 jobs:
   Generate-Website:
     runs-on: ubuntu-latest
