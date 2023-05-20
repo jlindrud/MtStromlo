@@ -20,14 +20,15 @@ jobs:
         run: |
           rm -rf ./docs/*
           python -m pip install beautifulsoup4          
-          python DummyIndex.py
+          #python DummyIndex.py
+          python MtStromloScraper.py --dir docs --publish https://jlindrud.github.io/MtStromlo/
       
       - name: Commit website
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions@users.noreply.github.com"
+          git config --local user.name "github-actions"
           git add --all docs/
-          git commit -m "Regen website"
+          git commit -m "[GitHub Action] Regenerate website"
       
       - name: Push website
         uses: ad-m/github-push-action@master
