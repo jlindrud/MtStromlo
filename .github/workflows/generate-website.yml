@@ -22,18 +22,18 @@ jobs:
           python -m pip install beautifulsoup4          
           python DummyIndex.py
       
-      - name: Commit website
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add --all public/
-          git commit -m "Regen /public"
-          git push
+      # - name: Commit website
+        # run: |
+          # git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          # git config --local user.name "github-actions[bot]"
+          # git add --all public/
+          # git commit -m "Regen /public"
+          # git push
       
-      - name: Push website
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+      # - name: Push website
+        # uses: ad-m/github-push-action@master
+        # with:
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          # branch: ${{ github.ref }}
       
       - run: echo "🍏 This job's status is ${{ job.status }}."
