@@ -14,7 +14,7 @@ html = '''\
 </head>
 <body>
 <p>
-Brought to you courtesy of DummyIndex.py!
+From the "docs" folder - brought to you courtesy of DummyIndex.py!
 </p>
 <p>
 Current date and time is: {}
@@ -23,7 +23,7 @@ Current date and time is: {}
 </html>
 '''
 
-outDir = 'public'
+outDir = 'docs'
 if not os.path.exists(outDir):
     os.makedirs(outDir)
 
